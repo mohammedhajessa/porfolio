@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Haj Issa - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Theme variables */
+        :root {
+            --dark-bg: #0a0a0a;
+            --dark-surface: #121212;
+            --dark-card: #181818;
+            --dark-text-primary: #ffffff;
+            --dark-text-secondary: rgba(255, 255, 255, 0.7);
+            --dark-border: rgba(255, 255, 255, 0.1);
+            --dark-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            --dark-header: rgba(10, 10, 10, 0.85);
+            
+            --light-bg: #f8f9fa;
+            --light-surface: #ffffff;
+            --light-card: #ffffff;
+            --light-text-primary: #2d3436;
+            --light-text-secondary: #636e72;
+            --light-border: rgba(0, 0, 0, 0.08);
+            --light-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+            --light-header: rgba(255, 255, 255, 0.9);
+            
+            --primary: #00B7FF;
+            --primary-light: #74d2ff;
+            --primary-dark: #0088cc;
+            --secondary: #7B00FF;
+            --accent: #FF3860;
+            
+            --transition-speed: 0.4s;
+            
+            /* Font sizes */
+            --text-base: 18px;
+            --text-lg: 20px;
+            --text-xl: 24px;
+            --text-2xl: 28px;
+            --text-3xl: 36px;
+            --text-4xl: 48px;
+            --text-5xl: 60px;
+        }
+        
+        /* Base styles */
+        body {
+            background-color: var(--dark-bg);
+            color: var(--dark-text-primary);
+            transition: background-color var(--transition-speed) ease, 
+                        color var(--transition-speed) ease;
+            background-image: 
+                radial-gradient(circle at 25% 15%, rgba(0, 183, 255, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 75% 85%, rgba(123, 0, 255, 0.05) 0%, transparent 25%);
+            font-family: 'Montserrat', sans-serif;
+            font-size: var(--text-base);
+            line-height: 1.6;
+        }
+        
+        html[data-theme="light"] body {
+            background-color: var(--light-bg);
+            color: var(--light-text-primary);
+            background-image: 
+                radial-gradient(circle at 25% 15%, rgba(0, 183, 255, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 75% 85%, rgba(123, 0, 255, 0.08) 0%, transparent 25%);
+        }
+        
+        /* Navbar specific styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: var(--dark-header);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all var(--transition-speed) ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            border-bottom: 1px solid var(--dark-border);
+        }
+        
+        html[data-theme="light"] header {
+            background: var(--light-header);
+            border-bottom: 1px solid var(--light-border);
+            box-shadow: var(--light-shadow);
+        }
+        
+        .logo {
+            font-weight: 800;
+            font-size: var(--text-xl);
+            color: var(--primary);
+            position: relative;
+            padding: 8px 20px;
+            border-radius: 30px;
+            background: rgba(0, 183, 255, 0.1);
+            border: 1px solid rgba(0, 183, 255, 0.2);
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+        
+        html[data-theme="light"] .logo {
+            background: rgba(0, 183, 255, 0.15);
+            box-shadow: 0 0 15px rgba(0, 183, 255, 0.15);
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 183, 255, 0.2);
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: var(--text-base);
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        html[data-theme="light"] nav ul li a {
+            color: #333333 !important;
+        }
+        
+        nav ul li a i {
+            font-size: var(--text-base);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            background: rgba(0, 183, 255, 0.1);
+            color: var(--primary) !important;
+        }
+        
+        nav ul li a:hover i {
+            transform: translateY(-2px);
+            color: var(--primary-light);
+        }
+        
+        nav ul li a.active {
+            background: rgba(0, 183, 255, 0.15);
+            color: var(--primary) !important;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 183, 255, 0.2);
+        }
+        
+        html[data-theme="light"] nav ul li a.active {
+            background: rgba(0, 183, 255, 0.2);
+        }
+        
+        .toggle-theme {
+            margin-left: 25px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(0, 183, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(0, 183, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .toggle-theme::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 183, 255, 0.2) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .toggle-theme:hover::before {
+            opacity: 1;
+        }
+        
+        .toggle-theme:hover {
+            transform: rotate(45deg);
+        }
+        
+        .toggle-theme i {
+            font-size: var(--text-lg);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-theme:hover i {
+            color: var(--primary-light);
+        }
+        
+        html[data-theme="light"] .toggle-theme {
+            background: rgba(0, 183, 255, 0.15);
+            border: 1px solid rgba(0, 183, 255, 0.3);
+        }
+        
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            cursor: pointer;
+            font-size: var(--text-2xl);
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--primary-light);
+        }
+        
+        /* Section styles */
+        .section {
+            min-height: 100vh;
+            padding: 100px 10%;
+            position: relative;
+            transition: background-color var(--transition-speed) ease;
+        }
+        
+        .section-title {
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            transition: color var(--transition-speed) ease;
+        }
+        
+        html[data-theme="light"] .section-title {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .title-underline {
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin-bottom: 2rem;
+            transition: background var(--transition-speed) ease;
+        }
+        
+        html[data-theme="light"] .title-underline {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+        }
+        
+        /* Card and item styles */
+        .education-item, 
+        .project-card, 
+        .contact-card, 
+        .skill-badge {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            box-shadow: var(--dark-shadow);
+            transition: all var(--transition-speed) ease;
+        }
+        
+        html[data-theme="light"] .education-item,
+        html[data-theme="light"] .project-card,
+        html[data-theme="light"] .contact-card,
+        html[data-theme="light"] .skill-badge {
+            background: var(--light-card);
+            border: 1px solid var(--light-border);
+            box-shadow: var(--light-shadow);
+        }
+        
+        .education-item:hover,
+        .project-card:hover,
+        .contact-card:hover,
+        .skill-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 183, 255, 0.3);
+        }
+        
+        html[data-theme="light"] .education-item:hover,
+        html[data-theme="light"] .project-card:hover,
+        html[data-theme="light"] .contact-card:hover,
+        html[data-theme="light"] .skill-badge:hover {
+            background: rgba(0, 183, 255, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Hero section styles */
+        #hero h1 {
+            font-size: var(--text-5xl);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            transition: color var(--transition-speed) ease;
+            -webkit-text-stroke: 1px var(--primary);
+        }
+        
+        html[data-theme="light"] #hero h1 {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            -webkit-text-stroke: 0;
+        }
+        
+        .greeting, .subtitle {
+            color: var(--dark-text-secondary);
+            transition: color var(--transition-speed) ease;
+            font-size: var(--text-xl);
+        }
+        
+        html[data-theme="light"] .greeting,
+        html[data-theme="light"] .subtitle {
+            color: var(--light-text-secondary);
+        }
+        
+        /* Footer signature */
+        .footer-signature h2 {
+            font-size: var(--text-4xl);
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--dark-border);
+            transition: all var(--transition-speed) ease;
+        }
+        
+        html[data-theme="light"] .footer-signature h2 {
+            -webkit-text-stroke: 2px rgba(0, 183, 255, 0.3);
+        }
+        
+        /* Project cards */
+        .project-card h3 {
+            font-size: var(--text-xl);
+            font-weight: 600;
+        }
+        
+        .project-card p {
+            font-size: var(--text-base);
+        }
+        
+        /* Education items */
+        .education-item h3 {
+            font-size: var(--text-xl);
+            font-weight: 600;
+        }
+        
+        .education-item p {
+            font-size: var(--text-base);
+        }
+        
+        /* Experience items */
+        .experience-item h3 {
+            font-size: var(--text-xl);
+            font-weight: 600;
+        }
+        
+        .experience-role {
+            font-size: var(--text-lg);
+            font-weight: 500;
+        }
+        
+        .experience-description {
+            font-size: var(--text-base);
+        }
+        
+        /* Contact section */
+        .contact-subtitle {
+            font-size: var(--text-2xl);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-card h3 {
+            font-size: var(--text-xl);
+        }
+        
+        .contact-card p {
+            font-size: var(--text-lg);
+        }
+        
+        /* Skill badges */
+        .skill-badge {
+            font-size: var(--text-base);
+            padding: 10px 20px;
+        }
+        
+        /* Year range */
+        .year-range {
+            font-size: var(--text-xl);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+        
+        /* About section */
+        .section-content p {
+            font-size: var(--text-lg);
+            margin-bottom: 2rem;
+        }
+        
+        .section-content h3 {
+            font-size: var(--text-2xl);
+            margin-bottom: 1rem;
+        }
+        
+        /* Media queries for responsiveness */
+        @media (max-width: 992px) {
+            header {
+                padding: 15px 4%;
+            }
+            
+            nav ul {
+                gap: 2px;
+            }
+            
+            nav ul li a {
+                font-size: var(--text-base);
+                padding: 8px 12px;
+            }
+            
+            .section-title {
+                font-size: var(--text-3xl);
+            }
+            
+            #hero h1 {
+                font-size: var(--text-4xl);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            :root {
+                --text-base: 16px;
+                --text-lg: 18px;
+                --text-xl: 20px;
+                --text-2xl: 24px;
+                --text-3xl: 30px;
+                --text-4xl: 36px;
+                --text-5xl: 42px;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: var(--dark-header);
+                backdrop-filter: blur(15px);
+                padding: 20px 0;
+                gap: 10px;
+                transform: translateY(-200%);
+                transition: transform 0.4s ease;
+                z-index: 998;
+                align-items: center;
+                border-bottom: 1px solid var(--dark-border);
+                box-shadow: var(--dark-shadow);
+            }
+            
+            html[data-theme="light"] nav ul {
+                background: var(--light-header);
+                border-bottom: 1px solid var(--light-border);
+                box-shadow: var(--light-shadow);
+            }
+            
+            nav ul.show {
+                transform: translateY(0);
+            }
+            
+            nav ul li {
+                width: 90%;
+            }
+            
+            nav ul li a {
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+                padding: 12px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="logo">MOHAMMED HAJ ISSA</div>
+        <nav>
+            <div class="mobile-menu-btn" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul id="nav-menu">
+                <li><a href="#about" class="nav-link"><i class="fas fa-user-alt"></i> ABOUT ME</a></li>
+                <li><a href="#education" class="nav-link"><i class="fas fa-graduation-cap"></i> EDUCATION</a></li>
+                <li><a href="#experience" class="nav-link"><i class="fas fa-briefcase"></i> EXPERIENCE</a></li>
+                <li><a href="#projects" class="nav-link"><i class="fas fa-code-branch"></i> PROJECT</a></li>
+                <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> CONTACT</a></li>
+            </ul>
+            <!-- <div class="toggle-theme" id="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </div> -->
+        </nav>
+    </header>
+
+    <!-- Scroll To Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="section">
+        <div class="hero-content">
+            <p class="greeting">Hi ...</p>
+            <h1>Mohammed Haj Issa</h1>
+            <p class="subtitle">I am...</p>
+            <div class="role-container">
+                <div class="role">
+                    <p>Laravel</p>
+                    <p>Backend</p>
+                    <p>Developer</p>
+                </div>
+                <div class="laravel-logo">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4NC4xIDU3LjYiIGlkPSJsYXJhdmVsIj4KICA8cGF0aCBmaWxsPSIjRkI1MDNCIiBkPSJNODMuOCAyNi45Yy0uNi0uNi04LjMtMTAuMy05LjYtMTEuOS0xLjQtMS42LTItMS4zLTIuOS0xLjJzLTEwLjYgMS44LTExLjcgMS45Yy0xLjEuMi0xLjguNi0xLjEgMS42LjYuOSA3IDkuOSA4LjQgMTJsLTI1LjUgNi4xTDIxLjIgMS41Yy0uOC0xLjItMS0xLjYtMi44LTEuNUMxNi42LjEgMi41IDEuMyAxLjUgMS4zYy0xIC4xLTIuMS41LTEuMSAyLjlTMTcuNCA0MSAxNy44IDQyYy40IDEgMS42IDIuNiA0LjMgMiAyLjgtLjcgMTIuNC0zLjIgMTcuNy00LjYgMi44IDUgOC40IDE1LjIgOS41IDE2LjcgMS40IDIgMi40IDEuNiA0LjUgMSAxLjctLjUgMjYuMi05LjMgMjcuMy05LjggMS4xLS41IDEuOC0uOCAxLTEuOS0uNi0uOC03LTkuNS0xMC40LTE0IDIuMy0uNiAxMC42LTIuOCAxMS41LTMuMSAxLS4zIDEuMi0uOC42LTEuNHptLTQ2LjMgOS41Yy0uMy4xLTE0LjYgMy41LTE1LjMgMy43LS44LjItLjguMS0uOC0uMi0uMi0uMy0xNy0zNS4xLTE3LjMtMzUuNS0uMi0uNC0uMi0uOCAwLS44UzE3LjYgMi40IDE4IDIuNGMuNSAwIC40LjEuNi40IDAgMCAxOC43IDMyLjMgMTkgMzIuOC40LjUuMi43LS4xLjh6bTQwLjIgNy41Yy4yLjQuNS42LS4zLjgtLjcuMy0yNC4xIDguMi0yNC42IDguNC0uNS4yLS44LjMtMS40LS42cy04LjItMTQtOC4yLTE0TDY4LjEgMzJjLjYtLjIuOC0uMyAxLjIuMy40LjcgOC4yIDExLjMgOC40IDExLjZ6bTEuNi0xNy42Yy0uNi4xLTkuNyAyLjQtOS43IDIuNGwtNy41LTEwLjJjLS4yLS4zLS40LS42LjEtLjcuNS0uMSA5LTEuNiA5LjQtMS43LjQtLjEuNy0uMiAxLjIuNS41LjYgNi45IDguOCA3LjIgOS4xLjMuMy0uMS41LS43LjZ6Ij48L3BhdGg+Cjwvc3ZnPg==" alt="Laravel Logo">
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:adrienmhmmd@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+        <div class="portfolio-badge">PORTFOLIO</div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-grid">
+            <div class="section-image">
+                <img src="assets/profile.jpg" alt="Mohammed Haj Issa">
+                <div class="dot-pattern"></div>
+            </div>
+            <div class="section-content">
+                <h2 class="section-title">ABOUT ME</h2>
+                <div class="title-underline"></div>
+                <p>I am Mohammed Haj Issa from Syria, specifically from Jsr-Alshogor. I am currently a third student at engineer, pursuing a degree in IT. I am passionate about web development, particularly using the Laravel framework, and have experience in building efficient and comprehensive web applications. I thrive in collaborative environments and enjoy solving technical challenges while delivering innovative solutions.</p>
+                
+                <h3>Skill & Interest</h3>
+                <div class="skills-container">
+                    <div class="skill-badge"><i class="fas fa-server"></i> Api</div>
+                    <div class="skill-badge"><i class="fab fa-github"></i> Git/github</div>
+                    <div class="skill-badge"><i class="fas fa-database"></i> Data base</div>
+                    <div class="skill-badge"><i class="fab fa-node-js"></i> js & Node.js</div>
+                    <div class="skill-badge"><i class="fab fa-laravel"></i> Laravel</div>
+                    <div class="skill-badge"><i class="fab fa-python"></i> Python</div>
+                    <div class="skill-badge"><i class="fab fa-windows"></i> C#</div>
+                    <div class="skill-badge"><i class="fas fa-globe"></i> Web skills</div>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-badge">PORTFOLIO</div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="section">
+        <h2 class="section-title">EDUCATION</h2>
+        <div class="title-underline"></div>
+        <div class="year-range">2021 - Present</div>
+        
+        <div class="education-grid">
+            <div class="education-text">
+                <p>I am committed to continuous learning and education in the field of software development and IT. My educational background combines technical knowledge with practical skills essential for modern development work.</p>
+            </div>
+            <div class="education-details">
+                <div class="education-item">
+                    <h3><i class="fas fa-school"></i> High School</h3>
+                    <p>High School | 2021 - 2022</p>
+                    <p>Obtained with a rate of 95%</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3><i class="fas fa-university"></i> University Enrollment</h3>
+                    <p>Sham University | 2022</p>
+                    <p>Admission to the Faculty of Information Technology at the University of Sham</p>
+                </div>
+                
+                <div class="education-item">
+                    <h3><i class="fas fa-language"></i> Languages</h3>
+                    <p>English</p>
+                    <p>Arabic (basic)</p>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-badge">PORTFOLIO</div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <h2 class="section-title">EXPERIENCE</h2>
+        <div class="title-underline"></div>
+        <div class="year-range">2025 - Present</div>
+        
+        <div class="experience-container">
+            <div class="experience-item">
+                <div class="experience-pointer">»</div>
+                <div class="experience-content">
+                    <h3><i class="fas fa-laptop-code"></i> Freelance Laravel Developer</h3>
+                    <p class="experience-role">2025 - PRESENT</p>
+                    <p class="experience-description">Developed and maintained web applications using Laravel framework. Designed and implemented database structures using MySQL. Collaborated with clients to understand requirements and deliver customized solutions.</p>
+                </div>
+            </div>
+            
+            <div class="experience-item">
+                <div class="experience-pointer">»</div>
+                <div class="experience-content">
+                    <h3><i class="fas fa-project-diagram"></i> Personal Projects</h3>
+                    <p class="experience-role">Multiple Laravel Applications</p>
+                    <p class="experience-description">Developed several complex web applications including e-commerce platforms, money transfer systems, school management systems, and real estate applications. Implemented secure user authentication, role-based access control, and optimized database interactions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="portfolio-badge">PORTFOLIO</div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title">SELECTED PROJECT</h2>
+        <div class="title-underline"></div>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assets/project1.png" alt="School Management System">
+                </div>
+                <h3><i class="fas fa-school"></i> School Management System</h3>
+                <p>Created a comprehensive school management system to handle student records, attendance, and grades. Developed modules for teachers, students, and administrators with role-based access control. Implemented features like timetable management, exam scheduling, and report generation.</p>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assets/project2.jpg" alt="Multi Vendor E-Commerce">
+                </div>
+                <h3><i class="fas fa-shopping-cart"></i> Multi-Vendor E-Commerce Platform</h3>
+                <p>Developed a fully functional multi-vendor e-commerce platform using Laravel and MySQL. Implemented features like product management, order tracking, and vendor dashboards.</p>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assets/project3.jpg" alt="Money Transfer System">
+                </div>
+                <h3><i class="fas fa-exchange-alt"></i> Money Transfer System</h3>
+                <p>Built a money transfer application that allows users to send and receive funds securely. Implemented user authentication, transaction history, and admin panel for managing transactions. Integrated APIs for real-time currency conversion and payment processing. Ensured data security and compliance with financial regulations.</p>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="assets/project4.jpg" alt="Real Estate App">
+                </div>
+                <h3><i class="fas fa-home"></i> Real Estate App</h3>
+                <p>Developed a comprehensive system to manage property listings, building requirements, advertisements, and real estate news. Designed modules for property owners, agents, and buyers with role-based access control. Implemented features such as property search/filter, appointment scheduling, news updates, and announcement management.</p>
+            </div>
+        </div>
+        <div class="portfolio-badge">PORTFOLIO</div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">GET IN TOUCH</h2>
+        <div class="title-underline"></div>
+        <h3 class="contact-subtitle">Let's Work Together</h3>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone & Mobile</h3>
+                <p>+30697757123</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>adrienmhmmd@gmail.com</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Location</h3>
+                <p>Syria</p>
+            </div>
+        </div>
+        
+        <div class="footer-signature">
+            <h2>MOHAMMED HAJ ISSA</h2>
+            <p>IT/LARAVEL BACKEND DEVELOPER</p>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="app.js"></script>
+
+    <!-- Add JavaScript for navbar functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const navMenu = document.getElementById('nav-menu');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    navMenu.classList.toggle('show');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    if (navMenu.classList.contains('show')) {
+                        icon.className = 'fas fa-times';
+                    } else {
+                        icon.className = 'fas fa-bars';
+                    }
+                });
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                    }
+                    
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Active link highlighting
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const htmlElement = document.documentElement;
+            
+            // Check if user has previously selected a theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                htmlElement.setAttribute('data-theme', savedTheme);
+                updateToggleIcon(savedTheme);
+            }
+            
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    const currentTheme = htmlElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    
+                    htmlElement.setAttribute('data-theme', newTheme);
+                    localStorage.setItem('theme', newTheme);
+                    
+                    updateToggleIcon(newTheme);
+                });
+            }
+            
+            function updateToggleIcon(theme) {
+                if (!themeToggle) return;
+                const icon = themeToggle.querySelector('i');
+                if (theme === 'dark') {
+                    icon.className = 'fas fa-moon';
+                } else {
+                    icon.className = 'fas fa-sun';
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
